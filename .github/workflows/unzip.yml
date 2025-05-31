@@ -3,13 +3,15 @@ name: Unzip Website
 on:
   push:
     paths:
-      - '**.zip'
+      - '*.zip'
 
 jobs:
   unzip:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Unzip Files
         run: |
           unzip *.zip
@@ -19,4 +21,3 @@ jobs:
           git add .
           git commit -m "Unzipped files"
           git push
-
