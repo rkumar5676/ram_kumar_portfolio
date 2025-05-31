@@ -1,1 +1,22 @@
+name: Unzip Website
+
+on:
+  push:
+    paths:
+      - '**.zip'
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Unzip Files
+        run: |
+          unzip *.zip
+          rm *.zip
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Unzipped files"
+          git push
 
